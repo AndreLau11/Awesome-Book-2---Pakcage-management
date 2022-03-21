@@ -77,12 +77,12 @@ header > h3 {
   justify-content: flex-start;
 }
 
-header > nav > ul > li {
-  border-right: 2px solid rgb(8, 8, 8);
-}
-
 ul > li {
   text-align: center;
+}
+
+header > nav > ul > li {
+  border-right: 2px solid rgb(8, 8, 8);
 }
 
 .addition {

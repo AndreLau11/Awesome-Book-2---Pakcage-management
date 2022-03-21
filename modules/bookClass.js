@@ -1,11 +1,27 @@
-export class Book {
-    constructor(title, author) {
-      this.title = title;
-      this.author = author;
-    }  
-    static addBook = () => {
+export default class Book {
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
+  }
+
+    static loadBooks = () => {
       const booksList = document.querySelector('.books-container');
       let booksCode = '';
+      let booksArray = [];
+      if (localStorage.getItem('booksData') === null) {
+        booksArray = [
+          {
+            title: 'Book one',
+            author: 'Kait',
+          },
+          {
+            title: 'Book two',
+            author: 'Cham',
+          },
+        ];
+      } else {
+        booksArray = JSON.parse(localStorage.getItem('booksData'));
+      }
       booksArray.forEach((element, index) => {
         const { title, author } = element;
         if (index % 2 === 0) {
@@ -33,10 +49,10 @@ export class Book {
       booksList.innerHTML = booksCode;
       localStorage.setItem('booksData', JSON.stringify(booksArray));
     };
-  
+
     static deleteBook = (el) => {
       if (el.classList.contains('delete')) {
         el.parentElement.remove();
       }
     };
-  }
+}

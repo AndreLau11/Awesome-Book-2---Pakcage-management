@@ -1,4 +1,4 @@
-import { Book } from "../modules/bookClass";
+import Book from '../modules/bookClass.js';
 
 const title = document.querySelector('#title');
 const author = document.querySelector('#author');
@@ -6,33 +6,15 @@ const formSubmit = document.querySelector('.book-form');
 
 let booksArray = [];
 
-
+window.addEventListener('DOMContentLoaded', Book.loadBooks());
 
 window.removeBook = (title) => {
   document.querySelector('.books-container').addEventListener('click', (e) => {
     Book.deleteBook(e.target);
   });
   booksArray = booksArray.filter((elem) => elem.title !== title);
-  Book.addBook();
+  Book.loadBooks();
 };
-
-window.addEventListener('DOMContentLoaded', () => {
-  if (localStorage.getItem('booksData') === null) {
-    booksArray = [
-      {
-        title: 'Book one',
-        author: 'Kait',
-      },
-      {
-        title: 'Book two',
-        author: 'Cham',
-      },
-    ];
-  } else {
-    booksArray = JSON.parse(localStorage.getItem('booksData'));
-  }
-  Book.addBook();
-});
 
 formSubmit.addEventListener('submit', (event) => {
   if (title.value === '' || author.value === '') {
